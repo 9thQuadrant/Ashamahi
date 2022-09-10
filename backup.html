@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="favicon.png" rel="shortcut icon"/>
+	<link href="favicon.png" rel="icon"/>
+	<meta property="og:site_name" content="NK Blog">
+	<meta property="og:title" content="NK Blog" />
+	<meta property="og:description" content="Blog Cursed with Knowledge" />
+	<meta property="og:image" itemprop="image" content="/og.png">
+	<meta property="og:type" content="website" />
+	<meta name="description" content="Lets get cursed with Knowledge  with latest information and Intresting facts. NK Blog " />
+	<meta name="keywords" content="Technical,Blog,latest updates,new,technology,information,interesting,facts,NK,NK Blog,Chandrayaan,Vinayaka,Amazon Fire,Shazam,Avengers" />
+	<meta name="distribution" content="global">
+	<meta name="language" content="english" />
+	<meta name="rating" content="general" />
+	<meta name="category" content="Blog" />
+	<meta name="owner" content="AM" />
+	<meta name="author" content="NK" />
+
+
+	<!-- colors for url bars:start-->
+	<meta name="theme-color" content="#04396b">
+	<meta name="msapplication-navbutton-color" content="#04396b">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#04396b">
+	<!-- colors for url bars:end-->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1, user-scalable=no">
+
+	<title>Niketh Kopparthy Blog - Lets get cursed with knowledge!</title>
+	<link rel="stylesheet" href="css/w3.min.css?ver=1.0"/>
+	<link rel="stylesheet" href="css/materialize.min.css?ver=1.0"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Righteous|Material+Icons+Outlined&display=swap?ver=1.0"/>
+	<link rel="stylesheet" href="css/main.css"/>
+	<!-- update the version number as needed -->
+	<script defer src="/__/firebase/6.2.3/firebase-app.js?ver=1.0"></script>
+	<!-- include only the Firebase features as you need -->
+	<script defer src="/__/firebase/6.2.3/firebase-firestore.js?ver=1.0"></script>
+	<!-- initialize the SDK after all desired features are loaded -->
+	<script defer src="/__/firebase/init.js"></script>
+</head>
+<body ng-app="blog" ng-class=" nightMode ? 'w3-night-mode-black':'w3-white' ">
+
+
+
+	<div class="w3-top titleBar">
+
+		<div class="custom-blue w3-card-2">
+			<div class="w3-row">
+				<div class="w3-col titleBarAnimate" ng-class=" showMainContent ? 'l11 m10 s10 ':'l1 m1 s2'  ">
+					<a ng-href="/">
+						<div class="w3-xxlarge headingFont w3-padding w3-center w3-text-white w3-hide-medium w3-hide-large" ng-class="showMainContent ? 'mobileMarginLeft' : ''">NK</div>
+						<div class="w3-xxlarge headingFont w3-padding w3-text-white w3-hide-small">NK</div>
+					</a>
+				</div>
+				<div class="w3-col" ng-class=" showMainContent ? 'w3-hide' : 'l10 m10 s8 titleBarContentAnimate' ">
+					<div class="w3-padding">
+						<div class="w3-large w3-text-white w3-hide-large" ng-bind-html=" pageContent[currentPost].title | trimStringLength"></div>
+						<div class="w3-large w3-text-white w3-hide-small w3-hide-medium" ng-bind-html=" pageContent[currentPost].title"></div>
+						<div class="w3-small w3-text-white w3-hide-large" ng-bind-html=" pageContent[currentPost].shortnote | trimStringLength"></div>
+						<div class="w3-small w3-text-white w3-hide-small w3-hide-medium" ng-bind-html=" pageContent[currentPost].shortnote "></div>
+					</div>
+
+				</div>
+				<div class="w3-col l1 s1 m1">
+
+					<div class="w3-padding w3-padding-16">
+						<i class="w3-padding-4 material-icons-outlined w3-text-white" ng-bind-html=" nightMode ? 'brightness_4':'brightness_6' " ng-click=" toggleNightMode()" cursor selectnone></i>
+					</div>
+					
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+</div>
+
+
+<main ng-class=" nightMode ? 'w3-night-mode-black':'w3-white' ">
+
+	<div ng-controller="mainPage" class="w3-white" ng-cloak>
+		<div ng-show="showMainContent" class="outerPagesList" ng-class=" nightMode ? 'w3-night-mode-black':'w3-white' ">
+			<div class="w3-padding-32">&nbsp;</div>
+
+			<div ng-if="pagesList.length == 0">
+				<div class="w3-display-container w3-padding w3-padding-64">
+					<div class="w3-display-middle">
+						<div class="preloader-wrapper active">
+							<div class="spinner-layer">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div><div class="gap-patch">
+									<div class="circle"></div>
+								</div><div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-else="pagesList.length > 0">
+
+				<div class="w3-row postsListParent">
+					<div class="w3-col l1 w3-hide-small w3-hide-medium">&nbsp;</div>
+					<div class="w3-col l10 m12 s12 w3-row-padding">
+
+						<div class="w3-row-padding" ng-show="pages.length != 0">
+							<div class="w3-col l3 m2 s0 w3-hide-small">&nbsp;</div>
+							<div class=" w3-col l6 m8 s12 ">
+								<div class="w3-padding-32 w3-hide-small">
+									<div class="w3-round w3-padding w3-round w3-border" ng-class=" nightMode ? 'w3-night-mode-black' : 'w3-white' ">
+										<input id="searchPosts" type="text" ng-model="searchPosts" class="w3-input browser-default w3-border-0" placeholder="Search Posts" ng-class=" nightMode ? 'w3-night-mode-black ' : 'w3-white' ">
+									</div>
+								</div>
+								<div class="w3-padding-8 w3-hide-medium w3-hide-large">
+									<div class="w3-round w3-padding-tiny w3-round w3-border" ng-class=" nightMode ? 'w3-night-mode-black' : 'w3-white' ">
+										<input id="searchPosts" type="text" ng-model="searchPosts" class="w3-input browser-default w3-border-0" placeholder="Search Posts" ng-class=" nightMode ? 'w3-night-mode-black ' : 'w3-white' ">
+									</div>
+								</div>
+							</div>
+							<div class="w3-col l3 m2 s0 w3-hide-small">&nbsp;</div>
+						</div>
+						
+						
+						<div ng-repeat="(j,i) in pages | filter : searchPosts | startFrom:currentPage*pageSize | limitTo:pageSize" class="w3-col s12 l4 m4 postsList">
+
+							<div class="w3-padding">
+								<div class="w3-border w3-round">
+
+									<a ng-href="#!/posts/{{i.url}}">
+										<div class="pagesListImageOuterDiv">
+											<img ng-src="{{i.image}}" class="pagesListImage w3-round animate-show" width="100%" crossorigin="anonymous" fade-in/>
+										</div>
+									</a>
+									
+									<div class="w3-padding-0 w3-row-padding titleDiv" make-title-heights-equal ng-style="{'height':globalTitleNeutralHeight+'px'}">
+										<div class="w3-col l12 m12 s12">
+											<a ng-href="#!/posts/{{i.url}}" ng-class=" nightMode ? 'w3-text-white':'custom-blue-text' ">
+												<div class="w3-large"><div ng-bind-html="i.title | highlight: searchPosts"></div></div>
+											</a>
+										</div>
+									</div>
+
+									<div class="w3-padding-0 w3-row-padding shortNoteDiv" ng-style="{'height':globalShortnoteNeutralHeight+'px'}">
+										<div class="w3-col l12 m12 s12 w3-padding-bottom" make-short-note-heights-equal>
+											<a ng-href="#!/posts/{{i.url}}" class="w3-text-grey">
+												<div class="w3-small w3-text-grey w3-padding-bottom" ng-bind-html="i.shortnote | highlight: searchPosts"></div>
+											</a>
+											<span class="w3-small w3-border w3-border-blue w3-padding-tiny w3-round category-margin" ng-class=" nightMode ? 'w3-text-grey w3-custom-black':'w3-text-black w3-light-grey' " ng-repeat=" c in i.category.split(',') " ng-bind-html="c"></span>
+
+										</div>
+									</div>
+									<div class="w3-row w3-padding-16">
+										<div class="w3-col l4 m4 s4 w3-center">
+											<div class=""><i class="material-icons-outlined w3-large" ng-bind-html=" 'event' "></i><span class="w3-small" ng-bind-html="i.modified_date.seconds + '000' | date : 'd MMM'  | highlight: searchPosts"></span></div>
+										</div>
+										<div class="w3-col l4 m4 s4 w3-center">
+											<div class="" ng-click="clickLikePost(i.id,j)">
+												<span class="postLikeCount w3-small w3-hide" ng-bind-html="i.likeCount"></span>
+												<i class="material-icons-outlined" ng-bind-html=" i.likedPost ? 'favorite' : 'favorite_border' " ng-class="i.likedPost ? 'w3-text-red w3-xxlarge custom-line-height' : 'w3-text-grey w3-large'"></i>
+											</div>
+										</div>
+										<!-- <div class="w3-col l3 m3 s3 w3-center">
+											<div class=""><span class="postViewCount w3-small" ng-bind-html="i.viewCount"></span><i class="material-icons-outlined w3-large" ng-bind-html=" 'visibility' "></i></div>
+										</div> -->
+										<div class="w3-col l4 m4 s4 w3-center">
+											<div ng-click="shareUrl(i.id)" class="">
+												<!-- <span class="shareButton w3-small" ng-bind-html="i.shareCount"></span> -->
+												<i class="material-icons-outlined w3-large" ng-bind-html=" 'share' "></i>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						
+
+
+					</div>
+					<div class="w3-col l1 w3-hide-small w3-hide-medium">&nbsp;</div>
+
+				</div>
+			<div class="w3-center w3-padding-32" ng-show=" pages.length/pageSize > 1">
+
+
+				<button ng-disabled=" currentPage == 0 " ng-click="currentPage = currentPage-1" class="btn-small custom-blue custom-blue-hover material-icons-outlined" ng-bind-html=" 'arrow_back' ">
+					
+				</button>
+				<span ng-bind-html=" (currentPage+1) + '/' + Math.ceil(pages.length/pageSize)"></span>
+				<button ng-disabled=" currentPage >= pages.length/pageSize - 1 " ng-click="currentPage = currentPage+1" class="btn-small custom-blue custom-blue-hover material-icons-outlined" ng-bind-html=" 'arrow_forward' ">
+					
+				</button>
+
+			</div>
+
+
+
+			</div>
+		</div>
+
+
+
+		<div ng-hide="showMainContent" class="w3-light-grey innerPageContent" selectnone>
+
+			<div ng-if="currentPost == null">
+				<div class="w3-display-container w3-padding w3-padding-64">
+					<div class="w3-display-middle">
+						<div class="preloader-wrapper active">
+							<div class="spinner-layer">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div><div class="gap-patch">
+									<div class="circle"></div>
+								</div><div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-else="currentPost != null" class="w3-row" ng-class=" nightMode ? 'w3-night-mode-black' : 'w3-white' ">
+
+				<div class="w3-col l2 w3-hide-small w3-hide-medium">&nbsp;</div>
+				<div class="w3-col l8 s12 m12 mainContent" ng-class=" nightMode? 'w3-border' : '' ">
+
+
+					<div class="w3-padding-32">&nbsp;</div>
+					<div class="w3-row-padding">
+						<div class="w3-col m5 l4 s12">
+							<div class="w3-padding">
+								<img ng-src="{{pageContent[currentPost].image}}" style="margin-bottom:-100px;" class="pagesListImage w3-round w3-border w3-animate-opacity animate-show w3-white" width="100%" crossorigin="anonymous" fade-in/>
+							</div>
+						</div>
+					</div>
+					<div class="w3-padding">
+						<div class="w3-padding w3-card-2 w3-round" ng-class=" nightMode ? 'w3-night-mode-black':'w3-white' ">
+							<div class="w3-padding-32">&nbsp;</div>
+							<div class="w3-padding w3-xlarge headingFont" ng-bind-html="pageContent[currentPost].title"></div>
+							<div class="w3-row">
+								<div class="w3-col l12">
+									<div class="w3-padding w3-border w3-border-light-grey w3-round w3-medium-17" ng-bind-html="pageContent[currentPost].content | unsafe"></div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="w3-col l2 w3-hide-small w3-hide-medium">&nbsp;</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div ng-view class="ng-hide"></div>
+
+
+</main>
+
+<footer class="page-footer custom-blue contentFont">
+	<div class="container">
+		<div class="row">
+			<div class="col l6 s12">
+				<h5 class="white-text">Blog Cursed with Knowledge</h5>
+				<p class="grey-text text-lighten-4">Powered by Niketh Kopparthy</p>
+				<a class="w3-text-white footer-mail-link" href="mailto:feedback@nikethkopparthyblog.com?subject=Feedback for NK Blog&body=Type%20your%20feedback%20here">Feedback &amp; Support</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+</body>
+<script src="js/materialize.min.js?ver=1.0"></script>
+<script src="js/angular.min.js?ver=1.0"></script>
+<script src="js/angular-route.min.js?ver=1.0"></script>
+<script src="js/angular-animate.min.js?ver=1.0"></script>
+<script src="js/angular-sanitize.min.js?ver=1.0"></script>
+<script src="js/angular-touch.min.js?ver=1.0"></script>
+<script src="js/main.js"></script>
+</html>
