@@ -1,0 +1,63 @@
+@import '../../css/variables.scss';
+@import '../../css/w3.scss';
+
+
+.card-parent {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 25px 0 25px 0;
+    margin: 16px;
+    .img {
+        width: 100%;
+    }
+    .details {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        .heading {
+            @extend .w3-large;
+            @extend .pt-sans;
+            font-weight: 700;
+        }
+        .desc {
+            padding-top: 8px;
+            @extend .pt-sans-caption;
+        }
+    }
+    .utils {
+        padding: 8px 16px 0 16px;
+        display: flex;
+        flex-direction: row;
+        .date-updated {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            .icon {
+                @extend .icon;
+                @extend .w3-large;
+            }
+            .date {
+                @extend .pt-sans-narrow;
+                font-weight: 700;
+                padding-left: 5px;
+            }
+        }
+        .order {
+            text-align: right;
+            flex: 2;
+            @extend .w3-text-teal;
+            cursor: pointer;
+            .icon {
+                @extend .w3-large;
+                @extend .icon;
+            }
+            .order-text {
+                padding-left: 3px;
+                font-weight: 700;
+                @extend .pt-sans;
+                @extend .w3-large;
+            }
+        }
+    }
+}

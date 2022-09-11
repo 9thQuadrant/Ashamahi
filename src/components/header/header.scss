@@ -1,0 +1,26 @@
+@import '../../css/_variables';
+@import '../../css/_w3';
+
+.header {
+    position: fixed;
+    top: 0;
+    background-color: $header-color;
+    max-height: 90px;
+    display: flex;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    .logo {
+        flex: 2;
+        @extend .w3-xxxlarge;
+        font-family: 'Qwitcher Grypen';
+        font-weight: 700;
+        text-align: center;
+    }
+    .content {
+        flex: 9;
+    }
+    .mode {
+        flex: 1;
+    }
+}
