@@ -1,11 +1,11 @@
+import { Link } from 'react-router-dom';
 import './header.scss';
 
 const HeaderComponent = (): JSX.Element => {
     return <>
     <div className='header'>
-        <div className='logo'>Asha Mahi</div>
-        <div className='content'>erg</div>
-        <div className='mode'>ger</div>
+        <Link to="/" className='logo'>Asha Mahi</Link>
+        <div className="desc">Resin keychains and gifts items</div>
     </div>
     </>;
 };

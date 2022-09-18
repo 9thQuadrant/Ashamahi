@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { collection, getFirestore, query, where } from "firebase/firestore";
 
 let config = {
-    apiKey: "AIzaSyDNlR_XNl6QTtgG5T5HEdFwwkj-ViLLXXY",
-    authDomain: "nikethblog.firebaseapp.com",
-    databaseURL: "https://nikethblog.firebaseio.com",
-    projectId: "nikethblog",
-    storageBucket: "nikethblog.appspot.com",
-    messagingSenderId: "494672551387",
-    appId: "1:494672551387:web:6e2cdbd2bbb1e5a9"
+  apiKey: "AIzaSyAAHOZhobZyxwJ6-rD5pfy20tdfaCgvRy4",
+  authDomain: "asha-mahi-resin-works.firebaseapp.com",
+  projectId: "asha-mahi-resin-works",
+  storageBucket: "asha-mahi-resin-works.appspot.com",
+  messagingSenderId: "358824442178",
+  appId: "1:358824442178:web:29b26439c41ef7884030db",
+  measurementId: "G-55Z7DRCZW3"
 };
 const firestore =  getFirestore(initializeApp(config));
 export default firestore;

@@ -1,7 +1,13 @@
 
 
 .card-list-parent {
-    padding: 132px 128px;
+    &.mobile {
+        padding: 5px 5px;
+    }
+    &.desktop {
+        padding: 10px 128px;
+    }
+    margin-top: 65px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -6,10 +6,12 @@ import './card-list.scss';
 
 const CardListComponent = (): JSX.Element => {
 
+    const isMobile = useContext(GlobalContext.MobileContext);
+
     const stories: {[key:string]: IStory} = useContext(GlobalContext.StoriesContext);
 
     return <>
-        <div className='card-list-parent'>
+        <div className={`card-list-parent ${isMobile ? 'mobile': 'desktop'}`}>
             {
                 Object.keys(stories).map((url, i) => {
                     return <CardComponent story={stories[url]} key={i}></CardComponent>

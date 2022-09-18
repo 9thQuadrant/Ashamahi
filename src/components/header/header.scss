@@ -5,22 +5,20 @@
     position: fixed;
     top: 0;
     @extend .w3-teal;
-    max-height: 90px;
     display: flex;
     color: white;
     width: 100%;
-    padding: 12px;
+    text-align: center;
+    flex-direction: column;
+    line-height: 1.2;
     .logo {
-        flex: 2;
         @extend .w3-xxxlarge;
-        font-family: 'Qwitcher Grypen';
+        @extend .cursive;
         font-weight: 700;
-        text-align: center;
+        text-decoration: none;
     }
-    .content {
-        flex: 9;
-    }
-    .mode {
-        flex: 1;
+    .desc {
+        @extend .w3-medium;
+        @extend .pt-sans-caption;
     }
 }

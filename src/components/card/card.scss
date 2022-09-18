@@ -3,12 +3,17 @@
 
 
 .card-parent {
+    &.mobile {
+        flex-basis: 100%;
+    }
+    &.desktop {
+        flex-basis: 21%;
+    }
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    @extend .w3-border;
     border-radius: 25px 0 25px 0;
     margin: 16px;
-    flex-basis: 21%;
     overflow: hidden;
     .img-wrapper {
         width: 100%;
@@ -32,6 +37,9 @@
             justify-content: center;
         }
         .desc {
+            a {
+                text-decoration: none;
+            }
             padding-top: 16px;
             @extend .pt-sans-caption;
             height: 120px;
