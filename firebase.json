@@ -5,6 +5,7 @@
   },
   "hosting": {
     "public": "build",
+    "site": "asha-mahi-resin-works",
     "ignore": [
       "firebase.json",
       "**/.*",
