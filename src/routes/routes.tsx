@@ -7,8 +7,8 @@ const RoutesMap = (): JSX.Element => {
   return (
     <Routes>
       <Route path="/" element={<CardListComponent />} />
-      <Route path="/item/:id" element={ <StoryComponent /> } />
-      <Route path="*" element={ <NotFoundComponent /> } />
+      <Route path="/item/:id" element={<StoryComponent /> } />
+      <Route path="*" element={<NotFoundComponent /> } />
     </Routes>
   );
 };

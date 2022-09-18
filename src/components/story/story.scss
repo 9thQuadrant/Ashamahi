@@ -1,0 +1,59 @@
+@import '../../css/variables';
+@import '../../css/w3';
+
+.story-page {
+    display: flex;
+    @extend .w3-padding;
+    .pre-accessibility {
+        flex: 2;
+    }
+    
+    .post-accessibility {
+        flex: 2;
+
+    }
+
+    .story-parent {
+        flex: 10;
+        display: flex;
+        flex-direction: column;
+        border: solid 1px black;
+
+        .img {
+            display: flex;
+            max-width: 100%;
+
+            .image-wrapper {
+                flex: 9;
+
+                .actual-image {
+                    width: 100%;
+                    border-radius: 25px 0;
+                    border: 1px solid black;
+                }
+            }
+
+            .pre-empty-div {
+                flex: 1;
+                @extend .w3-padding;
+            }
+
+            .post-empty-div {
+                flex: 14;
+                @extend .w3-padding;
+            }
+        }
+
+        .heading {
+            @extend .pt-sans;
+            @extend .w3-xxlarge;
+            font-weight: 700;
+            @extend .w3-padding;
+        }
+
+        .desc {
+            @extend .w3-padding;
+        }
+    }
+
+}

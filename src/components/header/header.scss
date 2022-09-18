@@ -4,7 +4,7 @@
 .header {
     position: fixed;
     top: 0;
-    background-color: $header-color;
+    @extend .w3-teal;
     max-height: 90px;
     display: flex;
     color: white;
