@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import GlobalContext from '../../services/context';
+import GlobalContext, { CurrentStoryType } from '../../services/context';
 import { emptyStory, IStory } from '../card/card';
 import './story.scss';
 
 const StoryComponent = (): JSX.Element => {
 
     const { id } = useParams();
+    const {currentStory, setCurrentStory} = useContext(GlobalContext.CurrentStory) as CurrentStoryType;
     const storiesList: { [key: string]: IStory } = useContext(GlobalContext.StoriesContext);
     const [story, setStory] = useState<IStory>(emptyStory);
 
@@ -14,6 +15,7 @@ const StoryComponent = (): JSX.Element => {
         if (id) {
             console.log(storiesList[id]);
             setStory(storiesList[id]);
+            setCurrentStory(id);
         }
     }, [storiesList, id]);
 

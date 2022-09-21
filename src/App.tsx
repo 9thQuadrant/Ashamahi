@@ -8,8 +8,12 @@ import { IStory } from './components/card/card';
 import { getDocs } from 'firebase/firestore';
 import GlobalContext from './services/context';
 import checkIfMobile from './services/utils';
+
+
 function App() {
   const [storiesList, setStoriesList] = useState<{ [key: string]: IStory }>({});
+  const [currentStory, setCurrentStory] = useState("");
+
   useEffect(() => {
 
     const tempStory: { [key: string]: IStory } = {};
@@ -23,18 +27,16 @@ function App() {
   }, []);
 
 
-
   return (
     <>
       <GlobalContext.StoriesContext.Provider value={storiesList}>
         <GlobalContext.MobileContext.Provider value={checkIfMobile()}>
-            {Object.keys(storiesList).length && <>
-              <BrowserRouter>
+          <GlobalContext.CurrentStory.Provider value={{ currentStory, setCurrentStory }}>
+            <BrowserRouter>
               <HeaderComponent></HeaderComponent>
-                <RoutesMap />
-              </BrowserRouter>
-            </>
-            }
+              <RoutesMap />
+            </BrowserRouter>
+          </GlobalContext.CurrentStory.Provider>
         </GlobalContext.MobileContext.Provider>
       </GlobalContext.StoriesContext.Provider>
     </>
