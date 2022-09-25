@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
  export default function checkIfMobile(): boolean {
     let check = false;
     // eslint-disable-next-line no-useless-escape
@@ -7,4 +9,15 @@
 
 declare global {
     interface Window { [key:string]: any; }
+}
+
+
+export function getDateAndDay(time: Timestamp) {
+    const obj = time.toDate();
+    const monthObj = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jue', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${obj.getDay() + 1 } ${monthObj[obj.getUTCMonth() - 1]}`;
+}
+
+export function getUrl(path: string) {
+    return `https://wa.me/918332896990?text=Hi Asha Mahi, %0a I want to order the resin that is displayed here %0a%0a%0a ${window.location.origin}/item/${path}`;
 }

@@ -1,13 +1,36 @@
 import { createContext } from "react";
+import { IStory } from './interface';
 
-export type CurrentStoryType = {
-    currentStory: string | null,
-    setCurrentStory: React.Dispatch<React.SetStateAction<string>>
+export const ACTIONS = {
+    UPDATE_STORIES: "updateStories",
+    UPDATE_CURRENT_STORY: "updateCurrentStory",
+    IS_MOBILE: "isMobile"
 }
 
-const CurrentStory: any = createContext<CurrentStoryType>({currentStory: "", setCurrentStory: () => {}});
-const StoriesContext = createContext({});
-const MobileContext = createContext(false);
+export class InitialAppState {
+    currentStory: IStory | null = null;
+    storiesList: {[key: string]: IStory} = {};
+    isMobile = true
+}
 
-const GlobalContext = { MobileContext, StoriesContext, CurrentStory };
-export default GlobalContext;
+export interface ActionType {
+    type: string;
+    data: any;
+}
+
+
+export const AppContext: any = createContext({});
+
+export function AppReducer(state: any, action: any) {
+    const { type, data } = action;
+    switch (type) {
+        case ACTIONS.UPDATE_CURRENT_STORY:
+            return { ...state, currentStory: data };
+        case ACTIONS.UPDATE_STORIES:
+            return { ...state, storiesList: data };
+        case ACTIONS.IS_MOBILE:
+            return { ...state, isMobile: data };
+        default:
+            throw new Error(`Unhandled action type: ${action.type}`);
+    }
+}

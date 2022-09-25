@@ -1,26 +1,24 @@
-import { useContext } from 'react';
-import GlobalContext, { CurrentStoryType } from '../../services/context';
-import CardComponent, { IStory } from '../card/card';
+import { useContext, useEffect } from 'react';
 import './card-list.scss';
-import { useEffect } from 'react';
+import { AppContext } from '../../services/context';
+import CardComponent from '../card/card';
+import { updateCurrentStory } from '../../services/AppActions';
 
 
 const CardListComponent = (): JSX.Element => {
 
-    const isMobile = useContext(GlobalContext.MobileContext);
-    const {currentStory, setCurrentStory} = useContext(GlobalContext.CurrentStory) as CurrentStoryType;
 
-    const stories: {[key:string]: IStory} = useContext(GlobalContext.StoriesContext);
+    const {state: {isMobile, storiesList}, dispatch} = useContext(AppContext) as any;
 
     useEffect(()=>{
-        setCurrentStory("");
+        dispatch(updateCurrentStory(null));
     }, []);
 
     return <>
         <div className={`card-list-parent ${isMobile ? 'mobile': 'desktop'}`}>
             {
-                Object.keys(stories).map((url, i) => {
-                    return <CardComponent story={stories[url]} key={i}></CardComponent>
+                Object.keys(storiesList).map((url, i) => {
+                    return <CardComponent story={storiesList[url]} key={i}></CardComponent>
                 })
             }
         </div>

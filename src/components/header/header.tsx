@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom';
-import GlobalContext, { CurrentStoryType } from '../../services/context';
 import AshaMahiSvgComponent from './ashamahi';
 import './header.scss';
 import { useContext } from 'react';
-import { IStory } from '../card/card';
+import { AppContext } from '../../services/context';
 
 const HeaderComponent = (): JSX.Element => {
 
-    const {currentStory, setCurrentStory} = useContext(GlobalContext.CurrentStory) as CurrentStoryType;
-    const stories: {[key:string]: IStory} = useContext(GlobalContext.StoriesContext);
+    const {state: {currentStory, storiesList}} = useContext(AppContext) as any;
 
     return <>
-    <div className={`header ${Object.keys(stories).length ? '': 'full-height'}`}>
+    <div className={`header ${Object.keys(storiesList).length ? '': 'full-height'}`}>
         <Link to="/" className='logo'>
             <AshaMahiSvgComponent />
         </Link>
-        <div className="desc">{currentStory}</div>
+        <div className="desc">{currentStory?.shortnote ? currentStory.shortnote : "Resin Art works"}</div>
     </div>
     </>;
 };

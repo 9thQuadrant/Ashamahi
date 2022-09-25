@@ -2,17 +2,21 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.scss';
 import HeaderComponent from './components/header/header';
 import RoutesMap from './routes/routes';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import { storiesQuery } from './services/firebase';
-import { IStory } from './components/card/card';
 import { getDocs } from 'firebase/firestore';
-import GlobalContext from './services/context';
 import checkIfMobile from './services/utils';
+import { IStory } from './services/interface';
+import { updateIsMobile, updateStories } from './services/AppActions';
+import { AppContext, AppReducer, InitialAppState } from './services/context';
 
 
 function App() {
-  const [storiesList, setStoriesList] = useState<{ [key: string]: IStory }>({});
-  const [currentStory, setCurrentStory] = useState("");
+
+  const [state, dispatch] = useReducer(
+    AppReducer,
+    new InitialAppState()
+  );
 
   useEffect(() => {
 
@@ -22,23 +26,22 @@ function App() {
         const d: IStory = doc.data() as IStory;
         tempStory[d.url] = d;
       });
-      setStoriesList(tempStory);
+      dispatch(updateStories(tempStory));
+      dispatch(updateIsMobile(checkIfMobile()));
     });
   }, []);
 
 
+  const context: any = { state, dispatch };
+
   return (
     <>
-      <GlobalContext.StoriesContext.Provider value={storiesList}>
-        <GlobalContext.MobileContext.Provider value={checkIfMobile()}>
-          <GlobalContext.CurrentStory.Provider value={{ currentStory, setCurrentStory }}>
+      <AppContext.Provider value={context}>
             <BrowserRouter>
               <HeaderComponent></HeaderComponent>
               <RoutesMap />
             </BrowserRouter>
-          </GlobalContext.CurrentStory.Provider>
-        </GlobalContext.MobileContext.Provider>
-      </GlobalContext.StoriesContext.Provider>
+      </AppContext.Provider>
     </>
   );
 }
