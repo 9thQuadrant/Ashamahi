@@ -1,0 +1,136 @@
+@import '../../css/variables';
+@import '../../css/w3';
+
+.story-page {
+    display: flex;
+    @extend .w3-padding;
+
+    .pre-accessibility {
+        flex: 2;
+    }
+
+    .post-accessibility {
+        flex: 2;
+
+    }
+
+    .story-parent {
+        flex: 10;
+        display: flex;
+        flex-direction: column;
+        margin-top: 125px;
+
+        .img-parent {
+            display: flex;
+            max-width: 100%;
+
+            .image-custom-wrapper {
+                flex: 9;
+
+                .actual-image {
+                    width: 100%;
+                    border-radius: 25px 0;
+                    border: 1px solid black;
+                }
+            }
+
+            .pre-empty-div {
+                flex: 1;
+                @extend .w3-padding;
+            }
+
+            .post-empty-div {
+                flex: 14;
+                @extend .w3-padding;
+            }
+        }
+
+        .heading {
+            @extend .pt-sans;
+            @extend .w3-xxlarge;
+            font-weight: 700;
+            @extend .w3-padding;
+        }
+
+        .desc {
+            @extend .w3-padding;
+        }
+
+        .utils {
+            padding: 8px 16px 0 16px;
+            display: flex;
+            flex-direction: row;
+
+            .pre,
+            .post {
+                flex: 2;
+            }
+
+            .order-island {
+                @extend .w3-border;
+                @extend .w3-round;
+                @extend .w3-card;
+                @extend .w3-padding;
+                display: flex;
+                flex-direction: row;
+                flex: 8;
+
+                .date-updated {
+                    flex: 2;
+                    display: flex;
+                    align-items: center;
+
+                    .icon {
+                        @extend .icon;
+                        @extend .w3-large;
+                    }
+
+                    .date {
+                        @extend .pt-sans-narrow;
+                        font-weight: 700;
+                        padding-left: 5px;
+                    }
+                }
+
+                .order {
+                    text-align: right;
+                    flex: 2;
+
+                    .order-wrapper {
+                        text-decoration: none;
+                        @extend .w3-text-teal;
+                        cursor: pointer;
+
+                        .icon {
+                            @extend .w3-large;
+                            @extend .icon;
+                        }
+
+                        .order-text {
+                            padding-left: 3px;
+                            font-weight: 700;
+                            @extend .pt-sans;
+                            @extend .w3-large;
+                            vertical-align: text-bottom;
+                        }
+                    }
+                }
+            }
+        }
+
+        .slideshow-parent {
+            display: flex;
+            flex-direction: row;
+
+            .pre,
+            .post {
+                flex: 3;
+            }
+
+            .image-gallery {
+                flex: 6;
+            }
+        }
+    }
+
+}

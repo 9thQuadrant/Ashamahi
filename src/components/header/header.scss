@@ -1,0 +1,44 @@
+@import '../../css/_variables';
+@import '../../css/_w3';
+
+.header {
+    position: fixed;
+    top: 0;
+    @extend .w3-teal;
+    display: flex;
+    color: white;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    line-height: 1.2;
+    height: 126px;
+    justify-content: center;
+    transition: height 0.4s ease-in-out;
+    -webkit-transition: height 0.4s ease-in-out;
+    &.full-height {
+      height: 100%;
+    }
+    .logo {
+        @extend .w3-xxxlarge;
+        @extend .cursive;
+        font-weight: 700;
+        text-decoration: none;
+        @extend .w3-text-white;
+
+        path {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          animation: dash 5s ease-in-out forwards;
+        }
+        
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+    }
+    .desc {
+        @extend .w3-medium;
+        @extend .pt-sans-caption;
+    }
+}

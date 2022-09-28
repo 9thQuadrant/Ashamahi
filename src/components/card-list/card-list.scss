@@ -1,0 +1,14 @@
+
+
+.card-list-parent {
+    &.mobile {
+        padding: 5px 5px;
+    }
+    &.desktop {
+        padding: 10px 128px;
+    }
+    margin-top: 125px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
