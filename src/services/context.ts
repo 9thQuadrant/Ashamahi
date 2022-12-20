@@ -4,13 +4,15 @@ import { IStory } from './interface';
 export const ACTIONS = {
     UPDATE_STORIES: "updateStories",
     UPDATE_CURRENT_STORY: "updateCurrentStory",
-    IS_MOBILE: "isMobile"
+    IS_MOBILE: "isMobile",
+    UPDATE_CATEGORY_LIST: "categoryList"
 }
 
 export class InitialAppState {
     currentStory: IStory | null = null;
     storiesList: {[key: string]: IStory} = {};
-    isMobile = true
+    isMobile = true;
+    categoryList = new Set();
 }
 
 export interface ActionType {
@@ -30,6 +32,8 @@ export function AppReducer(state: any, action: any) {
             return { ...state, storiesList: data };
         case ACTIONS.IS_MOBILE:
             return { ...state, isMobile: data };
+        case ACTIONS.UPDATE_CATEGORY_LIST:
+            return { ...state, categoryList: data};
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }

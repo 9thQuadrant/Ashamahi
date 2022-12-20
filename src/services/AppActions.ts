@@ -22,3 +22,6 @@ export function updateCurrentStory(data: IStory | null) {
 export function updateIsMobile(data: boolean) {
     return new CreateAction(ACTIONS.IS_MOBILE, data);
 }
+export function updateCategories(data: Set<string>) {
+    return new CreateAction(ACTIONS.UPDATE_CATEGORY_LIST, data);
+}
