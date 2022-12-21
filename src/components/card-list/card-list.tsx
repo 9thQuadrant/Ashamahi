@@ -15,7 +15,7 @@ const CardListComponent = (): JSX.Element => {
 
     useEffect(()=>{
         dispatch(updateCurrentStory(null));
-    // eslint-disable-next-linw
+    // eslint-disable-next-line
     }, []);
 
     return <>
