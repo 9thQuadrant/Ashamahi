@@ -33,6 +33,7 @@ function App() {
       dispatch(updateStories(tempStory));
       dispatch(updateIsMobile(checkIfMobile()));
     });
+  // eslint-disable-next-line
   }, []);
 
 

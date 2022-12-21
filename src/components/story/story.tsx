@@ -26,6 +26,7 @@ const StoryComponent = (): JSX.Element => {
             })
             setImagesForSlideshow(tempImages);
         }
+    // eslint-disable-next-line
     }, [storiesList, id]);
 
 
