@@ -8,17 +8,17 @@ import './category-list.scss';
 const CategoryListComponent = (): JSX.Element => {
 
     const {state: {isMobile, categoryList}, dispatch} = useContext(AppContext) as any;
-
     useEffect(()=>{
         if (!categoryList.size) {
             dispatch(updateCategories(new Set()));
         }
+        // eslint-disable-next-line
     }, []);
 
     return <>
             <div className={`category-list-parent ${isMobile ? 'mobile': 'desktop'}`}>
             {
-                Array.from(categoryList).map((cat: any, i: any) => {
+                Array.from(categoryList).map((cat: any) => {
                     return <div className={`category-parent ${isMobile ? 'mobile': 'desktop'}`} key={cat}>
                         <Link to={'category/' + cat}>{cat}</Link>
                     </div>;
