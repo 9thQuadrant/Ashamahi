@@ -1,0 +1,34 @@
+@import '../../css/w3.scss';
+@import '../../css/variables.scss';
+
+.category-list-parent {
+    &.mobile {
+        padding: 5px 5px;
+    }
+    &.desktop {
+        padding: 10px 128px;
+    }
+    margin-top: 125px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .category-parent {
+        &.mobile {
+            flex-basis: 100%;
+        }
+        &.desktop {
+            flex-basis: 21%;
+        }
+        display: flex;
+        flex-direction: column;
+        @extend .w3-border;
+        border-radius: 25px 10px;
+        margin: 16px;
+        padding: 16px;
+        overflow: hidden;
+        a {
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+    }
+}

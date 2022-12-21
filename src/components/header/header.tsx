@@ -13,7 +13,7 @@ const HeaderComponent = (): JSX.Element => {
         <Link to="/" className='logo'>
             <AshaMahiSvgComponent />
         </Link>
-        <div className="desc">{currentStory?.shortnote ? currentStory.shortnote : "Resin Art works"}</div>
+        <div className="desc">{currentStory?.shortnote ? currentStory.shortnote : " "}</div>
     </div>
     </>;
 };

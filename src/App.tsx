@@ -7,7 +7,7 @@ import { storiesQuery } from './services/firebase';
 import { getDocs } from 'firebase/firestore';
 import checkIfMobile from './services/utils';
 import { IStory } from './services/interface';
-import { updateIsMobile, updateStories } from './services/AppActions';
+import { updateCategories, updateIsMobile, updateStories } from './services/AppActions';
 import { AppContext, AppReducer, InitialAppState } from './services/context';
 
 
@@ -21,11 +21,15 @@ function App() {
   useEffect(() => {
 
     const tempStory: { [key: string]: IStory } = {};
+    const categorySet = new Set<string>();
     getDocs(storiesQuery).then((q) => {
       q.forEach((doc) => {
         const d: IStory = doc.data() as IStory;
         tempStory[d.url] = d;
+        categorySet.add(d.category);
       });
+
+      dispatch(updateCategories(categorySet));
       dispatch(updateStories(tempStory));
       dispatch(updateIsMobile(checkIfMobile()));
     });
