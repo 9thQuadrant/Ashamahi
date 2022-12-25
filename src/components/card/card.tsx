@@ -17,10 +17,10 @@ const CardComponent = (props: ICardProps): JSX.Element => {
             <div className='details'>
                 <div className="tags"></div>
                 <div className="heading">
-                    <Link to={'item/' + props.story.url}>{props.story.title}</Link>
+                    <Link to={'/item/' + props.story.url}>{props.story.title}</Link>
                 </div>
                 <div className="desc">
-                    <Link to={'item/' + props.story.url}>
+                    <Link to={'/item/' + props.story.url}>
                         {props.story.shortnote}
                     </Link>
                 </div>
