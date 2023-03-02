@@ -7,7 +7,7 @@ import './category-list.scss';
 
 const CategoryListComponent = (): JSX.Element => {
 
-    const {state: {isMobile, categoryList}, dispatch} = useContext(AppContext) as any;
+    const {state: {isMobile, categoryList, categoryImg}, dispatch} = useContext(AppContext) as any;
     useEffect(()=>{
         if (!categoryList.size) {
             dispatch(updateCategories(new Set()));
@@ -20,7 +20,10 @@ const CategoryListComponent = (): JSX.Element => {
             {
                 Array.from(categoryList).map((cat: any) => {
                     return <div className={`category-parent ${isMobile ? 'mobile': 'desktop'}`} key={cat}>
-                        <Link to={'category/' + cat}>{cat}</Link>
+                        <Link  to={'category/' + cat}>
+                            <img src={categoryImg[cat] ?? ""} alt={cat} className="img"/>
+                        </Link>
+                        <Link className="link w3-xlarge w3-text-white" to={'category/' + cat}>{cat}</Link>
                     </div>;
                 })
             }

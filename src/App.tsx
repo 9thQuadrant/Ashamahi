@@ -3,11 +3,11 @@ import './App.scss';
 import HeaderComponent from './components/header/header';
 import RoutesMap from './routes/routes';
 import { useEffect, useReducer } from 'react';
-import { storiesQuery } from './services/firebase';
+import { categoryIndexQuery, storiesQuery } from './services/firebase';
 import { getDocs } from 'firebase/firestore';
 import checkIfMobile from './services/utils';
 import { IStory } from './services/interface';
-import { updateCategories, updateIsMobile, updateStories } from './services/AppActions';
+import { updateCategories, updateCategoryImage, updateIsMobile, updateStories } from './services/AppActions';
 import { AppContext, AppReducer, InitialAppState } from './services/context';
 
 
@@ -22,6 +22,7 @@ function App() {
 
     const tempStory: { [key: string]: IStory } = {};
     const categorySet = new Set<string>();
+    let categoryImg: any = {};
     getDocs(storiesQuery).then((q) => {
       q.forEach((doc) => {
         const d: IStory = doc.data() as IStory;
@@ -29,9 +30,18 @@ function App() {
         categorySet.add(d.category);
       });
 
-      dispatch(updateCategories(categorySet));
-      dispatch(updateStories(tempStory));
-      dispatch(updateIsMobile(checkIfMobile()));
+      getDocs(categoryIndexQuery).then((category: any) => {
+
+        category.forEach((doc: any) => {
+          categoryImg = doc.data();
+        })
+  
+        dispatch(updateCategories(categorySet));
+        dispatch(updateStories(tempStory));
+        dispatch(updateIsMobile(checkIfMobile()));
+        dispatch(updateCategoryImage(categoryImg));
+
+      })
     });
   // eslint-disable-next-line
   }, []);

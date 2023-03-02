@@ -16,3 +16,4 @@ export default firestore;
 
 
 export const storiesQuery = query(collection(firestore, "pages"), where("liveStatus", "==", true));
+export const categoryIndexQuery = query(collection(firestore, "categoryIndex"));
