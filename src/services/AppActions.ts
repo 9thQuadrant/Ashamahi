@@ -25,3 +25,6 @@ export function updateIsMobile(data: boolean) {
 export function updateCategories(data: Set<string>) {
     return new CreateAction(ACTIONS.UPDATE_CATEGORY_LIST, data);
 }
+export function updateCategoryImage(data: object) {
+    return new CreateAction(ACTIONS.UPDATE_CATEGORY_IMAGE, data);
+}

@@ -5,7 +5,8 @@ export const ACTIONS = {
     UPDATE_STORIES: "updateStories",
     UPDATE_CURRENT_STORY: "updateCurrentStory",
     IS_MOBILE: "isMobile",
-    UPDATE_CATEGORY_LIST: "categoryList"
+    UPDATE_CATEGORY_LIST: "categoryList",
+    UPDATE_CATEGORY_IMAGE: "categoryImg"
 }
 
 export class InitialAppState {
@@ -13,6 +14,7 @@ export class InitialAppState {
     storiesList: {[key: string]: IStory} = {};
     isMobile = true;
     categoryList = new Set();
+    categoryImg = {}
 }
 
 export interface ActionType {
@@ -34,6 +36,8 @@ export function AppReducer(state: any, action: any) {
             return { ...state, isMobile: data };
         case ACTIONS.UPDATE_CATEGORY_LIST:
             return { ...state, categoryList: data};
+        case ACTIONS.UPDATE_CATEGORY_IMAGE:
+            return { ...state, categoryImg: data};
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }
